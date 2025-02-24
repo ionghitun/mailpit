@@ -11,6 +11,7 @@
 
 - add as mail host `localhost` from outside docker container or `host.docker.internal` from inside docker container
 - add as mail port `MAILPIT_PORT`
+- leave username, password and encryption empty
 
 ## Dependencies
 
