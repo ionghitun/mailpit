@@ -1,6 +1,6 @@
 services:
-    portainer-nginx:
-        container_name: portainer-nginx
+    mailpit-nginx:
+        container_name: mailpit-nginx
         image: nginx:${NGINX_VERSION}
         restart: unless-stopped
         volumes:
@@ -8,7 +8,7 @@ services:
         ports:
             - "80"
         depends_on:
-            - portainer-portainer
+            - mailpit-mail
         environment:
             VIRTUAL_HOST: ${DOMAIN_HOST}
             SELF_SIGNED_HOST: ${SELF_SIGNED_HOST}
@@ -17,19 +17,22 @@ services:
             LETSENCRYPT_EMAIL: ${DOMAIN_EMAIL}
         networks:
             - nginx-proxy
-            - portainer
+            - mailpit
 
-    portainer-portainer:
-        container_name: portainer-portainer
-        image: portainer/portainer-ce:${PORTAINER_VERSION}
+    mailpit-mail:
+        container_name: mailpit-mail
+        image: axllent/mailpit:${MAILPIT_VERSION}
         restart: unless-stopped
-        volumes:
-            - ./data:/data
-            - /var/run/docker.sock:/var/run/docker.sock
+        environment:
+            MP_MAX_MESSAGES: 5000
+            MP_SMTP_AUTH_ACCEPT_ANY: 1
+            MP_SMTP_AUTH_ALLOW_INSECURE: 1
+        ports:
+            - ${MAILPIT_PORT}:1025
         networks:
-            - portainer
+            - mailpit
 
 networks:
-    portainer:
+    mailpit:
     nginx-proxy:
         external: true
