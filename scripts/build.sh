@@ -18,7 +18,7 @@ if [ "$UPDATE_IMAGES" = "y" ] || [ "$UPDATE_IMAGES" = "Y" ]; then
 fi
 
 echo
-echo "===== Building and starting container... ====="
+echo "===== Building and starting containers... ====="
 echo
 
 docker compose build --no-cache

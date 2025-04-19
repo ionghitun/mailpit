@@ -19,18 +19,16 @@ This project provides a Docker Compose setup for running Mailpit with optional H
 2. **Copy and configure environment variables**
    ```bash
    cp scripts/.env.example scripts/.env
-   export USER_ID=$(id -u)
-   export GROUP_ID=$(id -g)
    # Edit other variables in scripts/.env as needed
    ```
 3. **Update virtual host configuration**
-   Modify `scripts/nginx/custom.conf` to match your `DOMAIN_HOST`.
+   - Modify `scripts/nginx/custom.conf` to match your `DOMAIN_HOST`.
 4. **Start the project**
    ```bash
    sh scripts/start.sh
    ```
 5. **Access Mailpit**
-   Open your browser and navigate to your configured `DOMAIN_HOST` (e.g., https://mail.dev.local).
+   - Open your browser and navigate to your configured `DOMAIN_HOST` (e.g., https://mail.dev.local).
 
 ## Available scripts
 
